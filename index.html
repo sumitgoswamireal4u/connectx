@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ConnectX</title>
+<style>
+body{margin:0;background:#0b0b12;color:white;font-family:Arial,sans-serif}
+header{padding:20px;background:#171725;color:#a999ff;font-size:26px;font-weight:bold}
+main{max-width:600px;margin:auto;padding:18px}
+.card{background:#191925;padding:20px;border-radius:16px;margin-bottom:18px}
+p{color:#c5c5d5;line-height:1.5}
+button{background:#8b78ff;color:white;border:0;border-radius:10px;padding:12px;cursor:pointer}
+textarea{width:100%;box-sizing:border-box;background:#101019;color:white;padding:12px;border:1px solid #45405e;border-radius:10px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header>ConnectX.</header>
+<main>
+<section class="card">
+<h1>Welcome to ConnectX 👋</h1>
+<p>Meet new people. Share your thoughts. Discover new connections.</p>
+<button onclick="document.getElementById('message').focus()">Get Started</button>
+</section>
+<section class="card">
+<h3>What's on your mind?</h3>
+<textarea id="message" placeholder="Write something..."></textarea>
+<button onclick="publishPost()">Publish Post</button>
+</section>
+<h2>Community Feed 🌎</h2>
+<div id="feed"></div>
+</main>
+<script>
+function publishPost(){
+const input=document.getElementById('message');
+const text=input.value.trim();
+if(!text){alert('Write something first!');return;}
+const card=document.createElement('section');
+card.className='card';
+const p=document.createElement('p');
+p.textContent=text;
+const like=document.createElement('button');
+let count=0;
+like.textContent='♡ Like (0)';
+like.onclick=()=>{count++;like.textContent='♥ Like ('+count+')';};
+card.append(p,like);
+document.getElementById('feed').prepend(card);
+input.value='';
+}
+</script>
+</body>
+</html>
